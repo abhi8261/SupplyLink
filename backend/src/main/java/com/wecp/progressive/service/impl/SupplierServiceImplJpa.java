@@ -7,6 +7,7 @@ import com.wecp.progressive.service.SupplierService;
 
 public class SupplierServiceImplJpa implements SupplierService {
 
+    
     @Override
     public int addSupplier(Supplier supplier) {
         // TODO Auto-generated method stub

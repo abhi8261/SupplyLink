@@ -1,11 +1,11 @@
 package com.wecp.progressive.entity;
 
 public class Warehouse implements Comparable<Warehouse> {
-    int warehouseId;
-    int supplierId;
-    String warehouseName;
-    String location;
-    int capacity;
+    private int warehouseId;
+    private int supplierId;
+    private String warehouseName;
+    private String location;
+    private int capacity;
     
     public Warehouse() {
     }
@@ -60,7 +60,7 @@ public class Warehouse implements Comparable<Warehouse> {
 
     @Override
     public int compareTo(Warehouse o) {
-        return this.getWarehouseName().compareTo(o.getWarehouseName());
+        return Integer.compare(o.getCapacity(), this.getCapacity());
         
     }
     

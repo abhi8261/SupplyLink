@@ -6,6 +6,7 @@ import com.wecp.progressive.entity.Supplier;
 import com.wecp.progressive.service.SupplierService;
 
 public class SupplierServiceImplJdbc implements SupplierService {
+    
 
     @Override
     public List<Supplier> getAllSuppliers() {
