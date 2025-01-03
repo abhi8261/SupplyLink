@@ -15,27 +15,25 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public Supplier getSupplierById(int supplierId) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'getSupplierById'");
         return null;
     }
 
     @Override
     public void updateSupplier(Supplier supplier) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'updateSupplier'");
     }
 
     @Override
     public void deleteSupplier(int supplierId) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'deleteSupplier'");
     }
 
     @Override
     public List<Supplier> getAllSuppliers() {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'getAllSuppliers'");
         return List.of();
     }
+
+
 
 }
