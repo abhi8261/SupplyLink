@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class SupplierServiceImplJpa implements SupplierService {
 
-    private final SupplierRepository supplierRepository;
+    private  SupplierRepository supplierRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -54,8 +54,11 @@ public class SupplierServiceImplJpa implements SupplierService {
     }
 
     @Override
-    public void updateSupplier(Supplier supplier) throws SQLException {
-            supplierRepository.save(supplier);
+    public void updateSupplier(Supplier supplier) throws SupplierAlreadyExistsException {
+        if((supplierRepository.findByUsername(supplier.getUsername()) != null)){
+            throw new SupplierAlreadyExistsException("Supplier already exists with this email or username");
+        }
+        supplierRepository.save(supplier);
     }
 
     @Override

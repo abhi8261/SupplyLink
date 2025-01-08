@@ -1,39 +1,56 @@
 package com.wecp.progressive.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.wecp.progressive.entity.Shipment;
-import com.wecp.progressive.service.ShipmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.wecp.progressive.entity.Shipment;
+import com.wecp.progressive.repository.ShipmentRepository;
+import com.wecp.progressive.service.ShipmentService;
+@Service
 public class ShipmentServiceImpl implements ShipmentService  {
 
-
+    @Autowired
+    private ShipmentRepository shipmentRepository;
     @Override
-    public List<Shipment> getAllShipments() {
-        // TODO Auto-generated method stub
-        return List.of();
+    public int addShipment(Shipment shipment) throws SQLException {
+        return shipmentRepository.save(shipment).getShipmentId();
+        
     }
 
     @Override
-    public Shipment getShipmentById(int shipmentId) {
-        // TODO Auto-generated method stub
-        return null;
+    public void deleteShipment(int shipmentId) throws SQLException {
+         shipmentRepository.deleteById(shipmentId);
+        
     }
 
     @Override
-    public int addShipment(Shipment shipment) {
-        // TODO Auto-generated method stub
-        return -1;
+    public List<Shipment> getAllShipments() throws SQLException {
+        return shipmentRepository.findAll();
     }
 
     @Override
-    public void updateShipment(Shipment shipment) {
-        // TODO Auto-generated method stub
+    public Shipment getShipmentById(int shipmentId) throws SQLException {
+        return shipmentRepository.findByShipmentId(shipmentId);
     }
 
     @Override
-    public void deleteShipment(int shipmentId) {
-        // TODO Auto-generated method stub
+    public void updateShipment(Shipment shipment) throws SQLException {
+        int id= shipment.getShipmentId();
+        Shipment s= shipmentRepository.findByShipmentId(id);
+        s.setWarehouse(shipment.getWarehouse());
+        s.setProduct(shipment.getProduct());
+        s.setShipmentDate(shipment.getShipmentDate());
+        s.setSourceLocation(shipment.getSourceLocation());
+        s.setExpectedDeliveryDate(shipment.getExpectedDeliveryDate());
+        s.setStatus(shipment.getStatus());
+        shipmentRepository.save(s);
+        
     }
+
+
+    
 
 }
