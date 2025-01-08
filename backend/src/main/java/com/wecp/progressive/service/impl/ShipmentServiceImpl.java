@@ -1,31 +1,54 @@
+// @Service
+// public class ShipmentServiceImpl implements ShipmentService  {
+
+//     @Autowired
+//     ShipmentRepository shipmentRepository;
+
+//     @Override
+//     public List<Shipment> getAllShipments() {
+//         return shipmentRepository.findAll();
+//     }
+
+//     @Override
+//     public Shipment getShipmentById(int shipmentId) {
+//         return shipmentRepository.findByShipmentId(shipmentId);
+//     }
+
+//     @Override
+//     public int addShipment(Shipment shipment) {
+//         return shipmentRepository.save(shipment).getShipmentId();
+//     }
+
+//     @Override
+//     public void updateShipment(Shipment shipment) {
+//         shipmentRepository.save(shipment);
+//     }
+
+//     @Override
+//     public void deleteShipment(int shipmentId) {
+//         shipmentRepository.deleteById(shipmentId);
+//     }
+
+// }
+
 package com.wecp.progressive.service.impl;
+
+import com.wecp.progressive.entity.Shipment;
+import com.wecp.progressive.repository.InsuranceRepository;
+import com.wecp.progressive.repository.ShipmentRepository;
+import com.wecp.progressive.service.ShipmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.wecp.progressive.entity.Shipment;
-import com.wecp.progressive.repository.ShipmentRepository;
-import com.wecp.progressive.service.ShipmentService;
 @Service
-public class ShipmentServiceImpl implements ShipmentService  {
+public class ShipmentServiceImpl implements ShipmentService {
 
     @Autowired
-    private ShipmentRepository shipmentRepository;
-    @Override
-    public int addShipment(Shipment shipment) throws SQLException {
-        return shipmentRepository.save(shipment).getShipmentId();
-        
-    }
-
-    @Override
-    public void deleteShipment(int shipmentId) throws SQLException {
-         shipmentRepository.deleteById(shipmentId);
-        
-    }
-
+    ShipmentRepository shipmentRepository;
+    
     @Override
     public List<Shipment> getAllShipments() throws SQLException {
         return shipmentRepository.findAll();
@@ -37,20 +60,17 @@ public class ShipmentServiceImpl implements ShipmentService  {
     }
 
     @Override
-    public void updateShipment(Shipment shipment) throws SQLException {
-        int id= shipment.getShipmentId();
-        Shipment s= shipmentRepository.findByShipmentId(id);
-        s.setWarehouse(shipment.getWarehouse());
-        s.setProduct(shipment.getProduct());
-        s.setShipmentDate(shipment.getShipmentDate());
-        s.setSourceLocation(shipment.getSourceLocation());
-        s.setExpectedDeliveryDate(shipment.getExpectedDeliveryDate());
-        s.setStatus(shipment.getStatus());
-        shipmentRepository.save(s);
-        
+    public int addShipment(Shipment shipment) throws SQLException {
+        return shipmentRepository.save(shipment).getShipmentId();
     }
 
+    @Override
+    public void updateShipment(Shipment shipment) throws SQLException {
+        shipmentRepository.save(shipment);
+    }
 
-    
-
+    @Override
+    public void deleteShipment(int shipmentId) throws SQLException {
+        shipmentRepository.deleteById(shipmentId);
+    }
 }
