@@ -1,0 +1,60 @@
+<h2>Warehouse</h2>
+    <div class="">
+        <form action="" [formGroup]="warehouseForm">
+            <div>
+              <div>
+                <label for="supplierId">Supplier ID:</label>
+                <input id="supplierId" formControlName="supplierId" type="text" />
+                <div *ngIf="warehouseForm.get('supplierId')?.touched && warehouseForm.get(supplierId')?.invalid">
+                  <div class="text-red" **ngIf="warehouseForm.get('supplierId')?.errors?.required">
+                    SupplierId is required.
+                  </div>
+                </div>
+                    
+              <div>
+                <label for="warehouseName">Warehouse Name:</label>
+                <input id="warehouseName" formControlName="warehouseName" type="text" />
+                
+                <div *ngIf="warehouseForm.get('warehouseName')?.touched && warehouseForm.get('warehouseName')?.invalid">
+                  <div class="text-red" *ngIf="warehouseForm.get('warehouseName')?.errors?.required">
+                    Warehouse Name is required.
+                  </div>
+                </div>
+              </div>
+
+              <div>
+               
+                <label for="location">Location:</label>
+                <input id="location" formControlName="location" type="text" />
+                
+              </div>
+              <div>
+                <label for="capacity">Capacity:</label>
+                <input id="capacity" formControlName="capacity" type="text" />
+                <div *ngIf="warehouseForm.get('capacity')?.touched && warehouseForm.get('capacity')?.invalid">
+                  <div class="text-red" *ngIf="warehouseForm.get('capacity')?.errors?.required">
+                    Capacity Name is required.
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit">Submit</button>
+              </div>
+            </form>
+            </div>
+            
+
+            <div *ngIf="(supplierError$ | async) as supplierError" class="error">
+              {{ supplierError }}
+            </div>
+            <div *ngIf="(warehouseError$ | async) as warehouseError" class="error">
+              {{ warehouseError }}
+            </div>
+            <div *ngIf="(supplierSuccess$ | async) as supplierSuccess" class="success">
+              {{ supplierSuccess }}
+            </div>
+            <div *ngIf="(warehouseSuccess$ | async) as warehouseSuccess" class="success">
+              {{ warehouseSuccess }}
+            </div>
+
+  
